@@ -2,288 +2,300 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAMER ZONE | 게임 커뮤니티</title>
+    <title>DJMAX Style High-Refresh-Rate Rhythm Game</title>
     <style>
-        /* 기본 스타일 리셋 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
-            line-height: 1.6;
-        }
-
-        /* 헤더 & 네비게이션 */
-        header {
-            background-color: #1f2833;
-            padding: 20px 10px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid #66fcf1;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: #66fcf1;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #66fcf1;
-        }
-
-        /* 메인 비주얼 베너 */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://unsplash.com') no-repeat center center/cover;
-            height: 400px;
+            margin: 0;
+            background-color: #05050b;
+            color: white;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .hero h1 {
-            color: #ffffff;
-            font-size: 48px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-        }
-
-        .hero p {
-            color: #66fcf1;
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        /* 메인 콘텐츠 영역 */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* 세션 공통 서식 */
-        section {
-            background-color: #1f2833;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            border: 1px solid #45a29e;
-        }
-
-        h2 {
-            color: #ffffff;
-            margin-bottom: 20px;
-            border-left: 4px solid #66fcf1;
-            padding-left: 10px;
-        }
-
-        /* 추천 게임 카드 리스트 */
-        .game-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .game-card {
-            background-color: #0b0c10;
-            border-radius: 6px;
+            justify-content: center;
+            height: 100vh;
             overflow: hidden;
-            transition: transform 0.3s;
         }
-
-        .game-card:hover {
-            transform: translateY(-5px);
+        #game-container {
+            position: relative;
+            width: 400px;
+            height: 600px;
+            background-color: #0a0a14;
+            border: 4px solid #2e2e42;
+            box-shadow: 0 0 30px rgba(0, 255, 240, 0.15);
         }
-
-        .game-thumb {
-            width: 100%;
-            height: 140px;
-            background-color: #45a29e;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
+        canvas {
+            display: block;
         }
-
-        .game-info {
-            padding: 15px;
-        }
-
-        .game-info h3 {
-            color: #66fcf1;
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-
-        /* 미니 게임 플레이존 */
-        .clicker-box {
-            text-align: center;
-            padding: 20px;
-            background-color: #0b0c10;
-            border-radius: 6px;
-        }
-
-        .click-btn {
-            background-color: #66fcf1;
-            color: #0b0c10;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background 0.2s;
-        }
-
-        .click-btn:hover {
-            background-color: #45a29e;
-            color: white;
-        }
-
-        .score {
-            font-size: 24px;
-            color: #ffffff;
+        #ui-info {
             margin-top: 10px;
-            font-weight: bold;
-        }
-
-        /* 푸터 */
-        footer {
-            background-color: #1f2833;
+            font-size: 15px;
             text-align: center;
-            padding: 20px;
-            color: #c5c6c7;
-            font-size: 14px;
-            border-top: 1px solid #45a29e;
-            margin-top: 50px;
+            line-height: 1.6;
         }
+        .speed-btn {
+            background: #1e1e2f;
+            color: white;
+            border: 1px solid #3d3d5c;
+            padding: 5px 12px;
+            cursor: pointer;
+            margin: 0 5px;
+            border-radius: 4px;
+        }
+        .speed-btn:hover { background: #2d2d44; }
     </style>
 </head>
 <body>
 
-    <!-- 헤더 영역 -->
-    <header>
-        <div class="nav-container">
-            <div class="logo">🎮 GAMER ZONE</div>
-            <nav>
-                <a href="#intro">소개</a>
-                <a href="#games">추천게임</a>
-                <a href="#play">미니게임</a>
-            </nav>
+    <div id="game-container">
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+    </div>
+
+    <div id="ui-info">
+        <div>배속 조절: 
+            <button class="speed-btn" onclick="adjustSpeed(-0.5)">-0.5</button>
+            <span id="speed-text">4.0</span>x
+            <button class="speed-btn" onclick="adjustSpeed(0.5)">+0.5</button>
         </div>
-    </header>
-
-    <!-- 메인 비주얼 배너 -->
-    <div class="hero">
-        <h1>Welcome to Gamer Zone</h1>
-        <p>최신 게임 정보와 즐거운 커뮤니티가 함께하는 공간</p>
+        <div>판정선 싱크 보정 (방향키 <kbd>←</kbd> <kbd>→</kbd>): <strong id="sync-text" style="color: #ffcc00;">0ms</strong></div>
+        <p>게임 시작: <strong style="color: #00fff0;">스페이스바(Space)</strong> | 조작키: <strong>D F J K</strong></p>
     </div>
 
-    <!-- 메인 콘텐츠 레이아웃 -->
-    <div class="container">
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// --- 게임 엔진 및 프레임 최적화 변수 ---
+let speed = 4.0; 
+let audioOffset = 0; 
+const JUDGMENT_LINE_Y = 520; 
+const NOTE_HEIGHT = 16; // 조금 더 슬림하게 조절하여 판정 가시성 확보
+const LANE_WIDTH = 100;
+const KEYS = ['d', 'f', 'j', 'k'];
+const LANE_COLORS = ['#ff4b5c', '#00fff0', '#00fff0', '#ff4b5c'];
+
+// 고주사율(144Hz~360Hz) 및 저주사율 일관성을 위한 델타 타임 변수
+let lastFrameTime = 0;
+
+// --- 디맥 공식 판정선 테이블 ---
+const JUDGE_WINDOWS = [
+    { ms: 42,  name: "MAX 100%", color: "#00fff0", rate: 1.0 },
+    { ms: 55,  name: "MAX 90%",  color: "#00ff66", rate: 0.9 },
+    { ms: 68,  name: "MAX 80%",  color: "#22ff44", rate: 0.8 },
+    { ms: 80,  name: "MAX 70%",  color: "#66ff22", rate: 0.7 },
+    { ms: 95,  name: "MAX 50%",  color: "#ffcc00", rate: 0.5 },
+    { ms: 115, name: "MAX 40%",  color: "#ffaa00", rate: 0.4 },
+    { ms: 135, name: "MAX 30%",  color: "#ff8800", rate: 0.3 },
+    { ms: 160, name: "MAX 10%",  color: "#ff4400", rate: 0.1 },
+    { ms: 200, name: "MAX 1%",   color: "#ff2200", rate: 0.01 }
+];
+const BREAK_WINDOW = 220; 
+
+// --- 게임 인게임 상태 변수 ---
+let isPlaying = false;
+let startTime = 0;
+let score = 0;
+let totalNotesHit = 0; 
+let totalRateScore = 0; 
+let combo = 0;
+let maxCombo = 0;
+
+let lastJudgment = "";
+let judgmentColor = "white";
+let lastTimingType = ""; 
+let timingColor = "white";
+
+let keyState = { d: false, f: false, j: false, k: false };
+let laneEffect = { d: 0, f: 0, j: 0, k: 0 }; 
+
+// --- 2키 제한 딜루전 16비트 고속 계단 채보 ---
+const chart = [
+    { time: 1000, lane: 0 }, { time: 1000, lane: 3 },
+    { time: 1500, lane: 1 }, { time: 1500, lane: 2 },
+    { time: 2000, lane: 0 }, { time: 2300, lane: 1 },
+    { time: 2600, lane: 2 }, { time: 2900, lane: 3 },
+    { time: 3500, lane: 0 }, { time: 3500, lane: 2 },
+    { time: 4000, lane: 1 }, { time: 4000, lane: 3 },
+
+    // 고속 16비트 계단 구간
+    { time: 5000, lane: 0 }, { time: 5083, lane: 1 }, { time: 5166, lane: 2 }, { time: 5250, lane: 3 },
+    { time: 5333, lane: 2 }, { time: 5416, lane: 1 }, { time: 5500, lane: 0 }, { time: 5583, lane: 1 },
+    { time: 5666, lane: 2 }, { time: 5750, lane: 3 }, { time: 5833, lane: 2 }, { time: 5916, lane: 1 },
+    
+    // 지력 트레이닝 꼬임 패턴
+    { time: 6000, lane: 0 }, { time: 6083, lane: 2 }, { time: 6166, lane: 1 }, { time: 6250, lane: 3 },
+    { time: 6333, lane: 0 }, { time: 6416, lane: 2 }, { time: 6500, lane: 1 }, { time: 6583, lane: 3 },
+    
+    { time: 6700, lane: 0 }, { time: 6783, lane: 1 }, { time: 6866, lane: 2 }, { time: 6950, lane: 3 },
+    { time: 7100, lane: 0 }, { time: 7100, lane: 3 }
+];
+
+let playNotes = [];
+
+function startGame() {
+    playNotes = chart.map(note => ({ ...note, hit: false }));
+    score = 0;
+    totalNotesHit = 0;
+    totalRateScore = 0;
+    combo = 0;
+    maxCombo = 0;
+    lastJudgment = "START!";
+    judgmentColor = "#00fff0";
+    lastTimingType = "";
+    isPlaying = true;
+    startTime = performance.now();
+    lastFrameTime = performance.now();
+    requestAnimationFrame(gameLoop);
+}
+
+function adjustSpeed(amount) {
+    speed = Math.max(1.0, Math.min(9.0, speed + amount));
+    document.getElementById('speed-text').innerText = speed.toFixed(1);
+}
+
+function adjustOffset(amount) {
+    audioOffset += amount;
+    document.getElementById('sync-text').innerText = (audioOffset > 0 ? "+" : "") + audioOffset + "ms";
+}
+
+// --- 메인 부드러운 게임 루프 (High-Refresh Rate 대응) ---
+function gameLoop(timestamp) {
+    if (!isPlaying) return;
+
+    // 모니터 주사율 독립형 시간 델타 계산
+    const deltaTime = timestamp - lastFrameTime;
+    lastFrameTime = timestamp;
+
+    const currentTime = (timestamp - startTime) + audioOffset;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 1. 레인 기어배경 및 스무스 빔 렌더링
+    for (let i = 0; i < 4; i++) {
+        const key = KEYS[i];
         
-        <!-- 왼쪽 대형 콘텐츠 영역 -->
-        <main>
-            <section id="intro">
-                <h2>사이트 소개</h2>
-                <p>안녕하세요! <strong>GAMER ZONE</strong>에 오신 것을 환영합니다. 본 사이트는 세상의 모든 게임을 리뷰하고, 유저들과 소통하며, 가볍게 즐길 수 있는 미니게임을 제공하는 종합 게이밍 웹사이트입니다. 자유롭게 둘러보세요!</p>
-            </section>
-
-            <section id="games">
-                <h2>이번 주 추천 게임</h2>
-                <div class="game-list">
-                    <div class="game-card">
-                        <div class="game-thumb" style="background-image: url('https://unsplash.com'); background-size:cover;"></div>
-                        <div class="game-info">
-                            <h3>하이퍼 액션 RPG</h3>
-                            <p>화려한 그래픽과 짜릿한 타격감을 선사하는 정통 RPG 게임</p>
-                        </div>
-                    </div>
-                    <div class="game-card">
-                        <div class="game-thumb" style="background-image: url('https://unsplash.com'); background-size:cover;"></div>
-                        <div class="game-info">
-                            <h3>사이버 서바이벌</h3>
-                            <p>미래 도시에서 펼쳐지는 50인 동시 접속 배틀로얄</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- 오른쪽 사이드바 영역 -->
-        <aside>
-            <section id="play">
-                <h2>스트레스 해소 몬스터 클릭커</h2>
-                <div class="clicker-box">
-                    <p>몬스터를 클릭해서 처치하세요!</p>
-                    <button class="click-btn" id="clickBtn">⚔️ 공격!</button>
-                    <div class="score">처치한 몬스터: <span id="scoreText">0</span>마리</div>
-                </div>
-            </section>
-        </aside>
-
-    </div>
-
-    <!-- 푸터 영역 -->
-    <footer>
-        <p>&copy; 2026 GAMER ZONE. All rights reserved.</p>
-    </footer>
-
-    <!-- 미니게임 작동 자바스크립트 -->
-    <script>
-        let count = 0;
-        const button = document.getElementById('clickBtn');
-        const scoreText = document.getElementById('scoreText');
-
-        button.addEventListener('click', () => {
-            count++;
-            scoreText.textContent = count;
+        ctx.fillStyle = keyState[key] ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.4)';
+        ctx.fillRect(i * LANE_WIDTH, 0, LANE_WIDTH, canvas.height);
+        
+        // 시간 기반 불빛 감쇠 연출 (주사율에 상관없이 항상 일정한 속도로 페이드아웃)
+        if (laneEffect[key] > 0) {
+            let gradient = ctx.createLinearGradient(0, JUDGMENT_LINE_Y, 0, 150);
+            gradient.addColorStop(0, `rgba(0, 255, 240, ${laneEffect[key] * 0.35})`);
+            gradient.addColorStop(1, 'rgba(0, 255, 240, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(i * LANE_WIDTH, 150, LANE_WIDTH, JUDGMENT_LINE_Y - 150);
             
-            // 클릭할 때마다 버튼이 살짝 튕기는 효과 구현
-            button.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                button.style.transform = 'scale(1)';
-            }, 100);
-        });
-    </script>
-</body>
-</html>
+            laneEffect[key] -= deltaTime * 0.004; // 초당 일정한 감쇠 수치 보정
+        }
+
+        ctx.strokeStyle = '#1b1b2f';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(i * LANE_WIDTH, 0);
+        ctx.lineTo(i * LANE_WIDTH, canvas.height);
+        ctx.stroke();
+    }
+
+    // 2. 디맥 스타일 기어 가이드라인 레이아웃
+    ctx.fillStyle = '#252538';
+    ctx.fillRect(0, JUDGMENT_LINE_Y - 1, canvas.width, 8);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, JUDGMENT_LINE_Y + 1, canvas.width, 4);
+
+    // 3. 노트 보정 업데이트
+    playNotes.forEach(note => {
+        if (note.hit) return;
+
+        const timeDiff = note.time - currentTime;
+        
+        // 디맥 특유의 선형 고속 낙하 서브 픽셀 보정 공식 적용
+        const y = Math.round(JUDGMENT_LINE_Y - (timeDiff * 0.16 * speed));
+
+        if (y > -NOTE_HEIGHT && y < canvas.height) {
+            // 노트 외곽 프레임
+            ctx.fillStyle = LANE_COLORS[note.lane];
+            ctx.fillRect(note.lane * LANE_WIDTH + 5, y, LANE_WIDTH - 10, NOTE_HEIGHT);
+            // 노트 내부 코어 바 효과
+            ctx.fillStyle = '#ffffff'; 
+            ctx.fillRect(note.lane * LANE_WIDTH + 14, y + 3, LANE_WIDTH - 28, NOTE_HEIGHT - 6);
+        }
+
+        // 과도 이탈 노트를 즉각 BREAK 처리하여 꼬임 방지
+        if (timeDiff < -BREAK_WINDOW) {
+            note.hit = true;
+            combo = 0;
+            totalNotesHit++;
+            lastJudgment = "BREAK";
+            judgmentColor = "#ff2e2e";
+            lastTimingType = ""; 
+        }
+    });
+
+    // 4. 스무스 텍스트 가독성 향상 처리
+    ctx.fillStyle = '#727293';
+    ctx.font = '14px Arial';
+    ctx.fillText(`SCORE: ${score}`, 25, 45);
+    ctx.fillText(`MAX COMBO: ${maxCombo}`, 25, 70);
+
+    const currentRate = totalNotesHit > 0 ? ((totalRateScore / totalNotesHit) * 100).toFixed(2) : "100.00";
+    ctx.fillStyle = '#00fff0';
+    ctx.fillText(`RATE: ${currentRate}%`, 25, 95);
+
+    // 콤보 폰트 및 입체 쉐도우 최적화
+    if (combo > 0) {
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 34px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(combo, canvas.width / 2, 220);
+        ctx.font = '13px Arial';
+        ctx.fillStyle = '#ffb700';
+        ctx.fillText("COMBO", canvas.width / 2, 245);
+    }
+
+    if (lastJudgment) {
+        ctx.textAlign = 'center';
+        if (lastTimingType !== "") {
+            ctx.fillStyle = judgmentColor;
+            ctx.font = 'bold 28px Arial';
+            ctx.fillText(lastJudgment, canvas.width / 2 - 32, 295);
+            
+            ctx.fillStyle = timingColor;
+            ctx.font = 'bold 16px Arial';
+            ctx.fillText(lastTimingType, canvas.width / 2 + 55, 293);
+        } else {
+            ctx.fillStyle = judgmentColor;
+            ctx.font = 'bold 28px Arial';
+            ctx.fillText(lastJudgment, canvas.width / 2, 295);
+        }
+    }
+    ctx.textAlign = 'left';
+
+    // 종료 조건 핸들링
+    if (playNotes.every(note => note.hit)) {
+        isPlaying = false;
+        ctx.fillStyle = '#00fff0';
+        ctx.font = 'bold 30px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText("STAGE CLEAR", canvas.width / 2, canvas.height / 2 - 20);
+        ctx.font = '18px Arial';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(`최종 정확도: ${currentRate}%`, canvas.width / 2, canvas.height / 2 + 20);
+        ctx.textAlign = 'left';
+        return;
+    }
+
+    requestAnimationFrame(gameLoop);
+}
+
+// --- 초정밀 밀리초 입력 리스너 ---
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { adjustOffset(-5); return; }
+    if (e.key === 'ArrowRight') { adjustOffset(5); return; }
+
+    const key = e.key.toLowerCase();
+    if (key === ' ') {
+        if (!isPlaying) startGame();
+        return;
+    }
+
+    if (!KEYS.includes(key) || keyState[key]) return;
